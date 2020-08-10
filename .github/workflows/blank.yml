@@ -31,7 +31,6 @@ jobs:
         echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add ~/.ssh/private
-        ssh pjp@patjpaj.me
       env:
         SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
         SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
