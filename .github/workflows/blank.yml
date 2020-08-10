@@ -31,8 +31,7 @@ jobs:
         echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add ~/.ssh/private
-        git checkout master
-        git add remote live ssh://pjp@patjpaj.me/var/www/patjpaj.me/public_html
+        git add remote live ssh://pjp@patjpaj.me/var/repo/patjpaj.me.git
         git push -f live master
       env:
         SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
