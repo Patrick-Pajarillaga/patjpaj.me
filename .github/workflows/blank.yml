@@ -25,14 +25,15 @@ jobs:
     # Runs a single command using the runners shell
     - name: Setting Up SSH Key
       run: | 
-        ls -la
         mkdir ~/.ssh/
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/private
         sudo chmod 600 ~/.ssh/private
         echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add ~/.ssh/private
-        rsync . pjp@patjpaj.me/var/www/patjpaj.me/public_html
+        git checkout master
+        git add remote live ssh://pjp@patjpaj.me/var/www/patjpaj.me/public_html
+        git push -f live master
       env:
         SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
         SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
