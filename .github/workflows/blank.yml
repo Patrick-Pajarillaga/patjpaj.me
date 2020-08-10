@@ -28,11 +28,13 @@ jobs:
         mkdir ~/.ssh/
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/private
         sudo chmod 600 ~/.ssh/private
+        echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add ~/.ssh/private
         ssh pjp@patjpaj.me
       env:
         SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
+        SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
       
 
     - name: Setting up remote and Pushing to Remote Server
