@@ -32,9 +32,7 @@ jobs:
         echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add ~/.ssh/private
-        git remote add live ssh://pjp@patjpaj.me/var/repo/patjpaj.me.git
-        git remote show live
-        git push -f live master
+        rsync ./ pjp@patjpaj.me/var/www/patjpaj.me/public_html/
       env:
         SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
         SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
