@@ -31,10 +31,8 @@ jobs:
         echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add ~/.ssh/private
-        ssh pjp@patjpaj.me
-        cd ../../var/repo/patjpaj.me.git/
-        git pull origin master
-        logout
+        git remote add live ssh://pjp@patjpaj.me/../var/repo/patjpaj.me.git
+        git push -f live master
       env:
         SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
         SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
