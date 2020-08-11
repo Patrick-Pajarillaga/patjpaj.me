@@ -28,7 +28,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         script: whoami
-        key: ${{ secrets.PRIVATE }}
+        key: ${{ secrets.PRIVATE_KEY }}
 
     # Runs a single command using the runners shell
     - name: Setting Up SSH Key
