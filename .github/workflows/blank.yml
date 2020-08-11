@@ -27,20 +27,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        script: whoami
+        script: |
+          cd ../../var/repo/patjpaj.me.git
+          git --work-tree=./../../www/patjpaj.me/public_html/ pull origin master
         key: ${{ secrets.PRIVATE_KEY }}
-
-    # Runs a single command using the runners shell
-    - name: Setting Up SSH Key
-      run: | 
-        mkdir ~/.ssh/
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/private
-        sudo chmod 600 ~/.ssh/private
-        echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        eval $(ssh-agent)
-        ssh-add ~/.ssh/private
-        git remote add live ssh://pjp@patjpaj.me/var/repo/patjpaj.me.git
-        git push live master
-      env:
-        SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
-        SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
