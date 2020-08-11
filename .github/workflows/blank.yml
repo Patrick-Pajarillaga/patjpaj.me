@@ -22,6 +22,14 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        script: whoami
+        key: ${{ secrets.PRIVATE }}
+
     # Runs a single command using the runners shell
     - name: Setting Up SSH Key
       run: | 
