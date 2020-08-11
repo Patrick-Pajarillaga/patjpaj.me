@@ -1,0 +1,23 @@
+section.hw-section {
+  border: 2px black solid;
+  padding: 3px;
+  margin: 5px;
+  box-shadow: 10px 5px 5px grey;
+}
+
+h3 {
+  text-decoration: underline black;
+  margin-left: 5px;
+}
+
+#team-members {
+  justify-content: center;
+  text-align: center;
+  
+}
+
+#member-list {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
