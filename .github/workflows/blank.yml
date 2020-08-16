@@ -29,6 +29,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         script: |
           cd ../../var/repo/patjpaj.me.git
-          git --work-tree=./../../www/patjpaj.me/public_html/ fetch --all
-          git --work-tree=./../../www/patjpaj.me/public_html/ reset --hard origin/master
+          sudo git --work-tree=./../../www/patjpaj.me/public_html/ fetch --all
+          sudo git --work-tree=./../../www/patjpaj.me/public_html/ reset --hard origin/master
         key: ${{ secrets.PRIVATE_KEY }}
