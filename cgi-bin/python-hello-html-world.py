@@ -5,10 +5,14 @@
 import cgitb, time
 cgitb.enable()
 
-print "Content-Type: text/plain;charset=utf-8"
+print "Content-Type: text/html;charset=utf-8"
 print
 
+print '<html>'
+print '<head>'
 print "Hello World!"
-print '<html><body>'
+print '</head>'
+print '<body>'
 print 'Server time is', time.asctime(time.localtime())
-print '</body></html>'
+print '</body>'
+print '</html>'
