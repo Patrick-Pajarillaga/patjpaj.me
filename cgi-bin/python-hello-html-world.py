@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # enable debugging
-import cgitb
+import cgitb, time
 cgitb.enable()
 
 print "Content-Type: text/plain;charset=utf-8"
