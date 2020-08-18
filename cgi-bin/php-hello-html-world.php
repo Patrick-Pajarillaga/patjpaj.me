@@ -2,11 +2,12 @@
 <html>
 <body>
 
-<h1>My first PHP page</h1>
+<h1>Team PJP - Hello World</h1>
 
 <?php
-echo "Hello World!";
-echo getenv("REMOTE_ADDR");
+echo "Team PJP - Hello World!";
+echo getenv("REMOTE_ADDR") . "<br>";
+echo "Today is " . date("Y/m/d") . "<br>";
 ?>
 
 </body>
