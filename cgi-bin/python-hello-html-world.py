@@ -2,10 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 # enable debugging
-import cgitb, time, socket
+import cgitb, time, os
 cgitb.enable()
-hostname = socket.gethostname()
-ip_address = socket.gethostbyname(hostname)
 
 print "Content-Type: text/html;charset=utf-8"
 print
@@ -18,6 +16,6 @@ print '</head>'
 print '<body><p>'
 print 'Server time is', time.asctime(time.localtime())
 print '</p><p>'
-print 'User IP is', ip_address
+print 'User IP is', os.environ[REMOTE_ADDR]
 print '</p></body>'
 print '</html>'
