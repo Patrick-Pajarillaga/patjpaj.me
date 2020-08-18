@@ -16,6 +16,6 @@ print '</head>'
 print '<body><p>'
 print 'Server time is', time.asctime(time.localtime())
 print '</p><p>'
-print 'User IP is', os.environ[REMOTE_ADDR]
+print 'User IP is', os.environ['REMOTE_ADDR']
 print '</p></body>'
 print '</html>'
