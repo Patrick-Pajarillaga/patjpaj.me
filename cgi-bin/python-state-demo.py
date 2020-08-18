@@ -15,14 +15,15 @@ if(cookie['username']):
 else:
   name = form.getvalue('username')
   cookie['username'] = name
+  print cookie
 
 
 
-print cookie
+
 print "Content-Type: text/html;charset=utf-8"
 print
 print '<html><head><title>Python Session 1</title> \
-</head><body><h1 align="center">Python Session</h1> \
+</head><body><h1 align="center">Python Session 1</h1> \
 <hr>'
 print 'Name:', name, '<br>'
 print '<a href="/cgi-bin/python-state-demo2.py">Session 2</a>'
