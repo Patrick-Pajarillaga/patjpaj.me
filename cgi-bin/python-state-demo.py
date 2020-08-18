@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # enable debugging
-import cgitb, time, os, sys, Cookie
+import cgi, cgitb, time, os, sys, Cookie
 cgitb.enable()
 
 form = cgi.FieldStorage()
