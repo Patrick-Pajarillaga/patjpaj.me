@@ -10,6 +10,7 @@ form = cgi.FieldStorage()
 cookie = Cookie.SimpleCookie()
 name = form.getvalue('username')
 cookie['username'] = name
+console.log(os.environ['HTTP_COOKIE'])
 
 print "Content-Type: text/html;charset=utf-8"
 print
