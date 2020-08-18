@@ -17,5 +17,5 @@ print '<html><head><title>Python Session 1</title> \
 </head><body><h1 align="center">Python Session</h1> \
 <hr>'
 print 'Name:', name, '<br>'
-print '<a href="./python-state-demo2.py">Session 2</a>'
+print '<a href="/cgi-bin/python-state-demo2.py">Session 2</a>'
 print '</body></html>'
