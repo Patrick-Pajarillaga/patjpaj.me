@@ -5,16 +5,14 @@
 import cgi, cgitb, time, os, sys, Cookie
 cgitb.enable()
 
-form = cgi.FieldStorage()
-
-cookie = Cookie.SimpleCookie()
-name = cookie['username']
+cookie_string = os.environ.get('HTTP_COOKIE')
+cookie.load(cookie_string)
 
 print "Content-Type: text/html;charset=utf-8"
 print
 print '<html><head><title>Python Session 2</title> \
 </head><body><h1 align="center">Python Session</h1> \
 <hr>'
-print 'Name:', name, '<br>'
+print 'Name:', cookie['username'].value, '<br>'
 print '<a href="/cgi-bin/python-state-demo1.py">Session 1</a>'
 print '</body></html>'
