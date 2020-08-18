@@ -5,7 +5,7 @@
 <h1>Team PJP - ENV Variables</h1>
 
 <?php
-foreach($_ENV as $key => $value) {
+foreach($GLOBALS as $key => $value) {
   echo $key . " = " . $value;
   echo "<br>";
 }
