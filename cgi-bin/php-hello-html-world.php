@@ -6,7 +6,7 @@
 
 <?php
 echo "Hello World!";
-echo $_ENV["REMOTE_ADDR"]
+echo $_ENV["REMOTE_ADDR"];
 ?>
 
 </body>
