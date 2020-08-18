@@ -8,14 +8,9 @@ cgitb.enable()
 form = cgi.FieldStorage()
 
 cookie = Cookie.SimpleCookie()
-cookie_string = os.environ.get('HTTP_COOKIE')
-cookie.load(cookie_string)
-if(cookie['username']):
-  name = cookie['username'].value
-else:
-  name = form.getvalue('username')
-  cookie['username'] = name
-  print cookie
+name = form.getvalue('username')
+cookie['username'] = name
+print cookie
 
 
 
