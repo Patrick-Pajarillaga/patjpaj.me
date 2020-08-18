@@ -10,7 +10,7 @@ print
 print '<html><head><title>General Request Echo</title> \
 </head><body><h1 align="center">General Request Echo</h1> \
 <hr>'
-print 'Request Method:', os.environ['REQUEST_METHOD'], '\n'
-print 'Server Protocol', os.environ['SERVER_PROTOCOL'], '\n'
-print 'Message Body:', sys.stdin.read(), '\n'
+print '<p>Request Method:', os.environ['REQUEST_METHOD'], '</p><br>'
+print '<p>Server Protocol', os.environ['SERVER_PROTOCOL'], '</p><br>'
+print '<p>Message Body:', sys.stdin.read(), '</p><br>'
 print '</body></html>'
