@@ -5,10 +5,10 @@
 import cgitb, time, os, json, sys
 cgitb.enable(display=0, logdir='./')
 
-#j = {'message':'Team PJP - Hello World!', 'date':time.asctime(time.localtime()), 'currentIP':'YUH'}
+j = {'message':'Team PJP - Hello World!', 'date':time.asctime(time.localtime()), 'currentIP':os.environ['REMOTE_ADDR']}
 
 #myjson = json.load(sys.stdin)
 
 print "Content-Type: application/json;charset=utf-8"
 print
-#print json.dumps(j)
+print json.dumps(j)
