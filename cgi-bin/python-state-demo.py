@@ -9,8 +9,8 @@ form = cgi.FieldStorage()
 
 cookie = Cookie.SimpleCookie()
 cookie_string = os.environ.get('HTTP_COOKIE')
-if(cookie_string):
-  cookie.load(cookie_string)
+cookie.load(cookie_string)
+if(cookie['username']):
   name = cookie['username'].value
 else:
   name = form.getvalue('username')
