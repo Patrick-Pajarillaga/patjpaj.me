@@ -10,4 +10,5 @@ print
 print '<!DOCTYPE html><html><head><title>GET Request Echo</title> \
 </head><body><h1 align="center">Get Request Echo</h1> \
 <hr>'
-print '<b>Query String:</b>'
+print '<b>Query String:</b>' os.environ['QUERY_STRING']
+print '</body></html>'
