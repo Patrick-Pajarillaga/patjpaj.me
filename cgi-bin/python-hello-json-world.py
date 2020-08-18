@@ -3,7 +3,7 @@
 
 # enable debugging
 import cgitb, time, os, json, sys
-cgitb.enable()
+cgitb.enable(display=0, logdir='./')
 
 j = {'message':'Team PJP - Hello World!', 'date':time.asctime(time.localtime()), 'currentIP':'YUH'}
 
