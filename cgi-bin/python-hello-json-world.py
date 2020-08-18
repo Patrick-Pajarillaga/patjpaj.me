@@ -9,6 +9,6 @@ j = {'message':'Team PJP - Hello World!', 'date':time.asctime(time.localtime()),
 
 myjson = json.load(sys.stdin)
 
-print "Content-Type: application/json"
+print "Content-Type: application/json;charset=utf-8"
 print
 print json.dumps(j)
