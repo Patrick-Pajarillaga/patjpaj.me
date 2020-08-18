@@ -5,7 +5,7 @@
 import cgitb, time, os, json, sys
 cgitb.enable()
 
-j = {'message':'Team PJP - Hello World!', 'date':time.asctime(time.localtime()), 'currentIP':os.environ['REMOTE_ADDR']}
+j = {'message':'Team PJP - Hello World!', 'date':time.asctime(time.localtime()), 'currentIP':'YUH'}
 
 myjson = json.load(sys.stdin)
 
