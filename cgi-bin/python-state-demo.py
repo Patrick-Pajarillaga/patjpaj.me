@@ -8,8 +8,15 @@ cgitb.enable()
 form = cgi.FieldStorage()
 
 cookie = Cookie.SimpleCookie()
-name = form.getvalue('username')
-cookie['username'] = name
+cookie_string = os.environ.get('HTTP_COOKIE')
+if(cookie_string):
+  cookie.load(cookie_string)
+  name = cookie['username'].value
+else:
+  name = form.getvalue('username')
+  cookie['username'] = name
+
+
 
 print cookie
 print "Content-Type: text/html;charset=utf-8"
