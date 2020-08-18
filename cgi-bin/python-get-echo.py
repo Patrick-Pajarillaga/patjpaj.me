@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # enable debugging
-from urlparse import urlparse
+from urlparse import parse_qs
 import cgitb, time, os
 cgitb.enable()
 
@@ -15,7 +15,7 @@ print '<html><head><title>GET Request Echo</title> \
 <hr>'
 print '<b>Query String:</b>', os.environ['QUERY_STRING']
 if(len(os.environ['QUERY_STRING']) == 0):
-  st = urlparse.parse_qs(os.environ['QUERY_STRING'])
+  st = parse_qs(os.environ['QUERY_STRING'])
   for key, value in st.items():
     print key, ':', value
 
