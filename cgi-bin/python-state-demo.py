@@ -11,6 +11,7 @@ cookie = Cookie.SimpleCookie()
 name = form.getvalue('username')
 cookie['username'] = name
 
+print cookie
 print "Content-Type: text/html;charset=utf-8"
 print
 print '<html><head><title>Python Session 1</title> \
