@@ -15,5 +15,5 @@ print '<html><head><title>Python Session 2</title> \
 </head><body><h1 align="center">Python Session 2</h1> \
 <hr>'
 print 'Name:', cookie['username'].value, '<br>'
-print '<a href="/python-cgiform.html">Session 1</a>'
+print '<a href="/cgi-bin/python-state-demo.py">Session 1</a>'
 print '</body></html>'
