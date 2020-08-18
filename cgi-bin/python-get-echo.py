@@ -7,8 +7,8 @@ cgitb.enable()
 
 print "Content-Type: text/html;charset=utf-8"
 print
-print '<!DOCTYPE html><html><head><title>GET Request Echo</title> \
+print '<html><head><title>GET Request Echo</title> \
 </head><body><h1 align="center">Get Request Echo</h1> \
 <hr>'
-print '<b>Query String:</b>' os.environ['QUERY_STRING']
+print '<b>Query String:</b>', os.environ['QUERY_STRING']
 print '</body></html>'
