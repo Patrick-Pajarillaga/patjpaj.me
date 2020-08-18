@@ -5,6 +5,7 @@
 import cgi, cgitb, time, os, sys, Cookie
 cgitb.enable()
 
+cookie = Cookie.SimpleCookie()
 cookie_string = os.environ.get('HTTP_COOKIE')
 cookie.load(cookie_string)
 
