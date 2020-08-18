@@ -5,10 +5,7 @@
 <h1>Team PJP - ENV Variables</h1>
 
 <?php
-foreach($GLOBALS as $key => $value) {
-  echo $key . " = " . $value;
-  echo "<br>";
-}
+print_r($GLOBALS)
 ?>
 
 </body>
