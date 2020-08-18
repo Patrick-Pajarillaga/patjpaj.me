@@ -6,8 +6,6 @@ from urlparse import parse_qs
 import cgitb, time, os
 cgitb.enable()
 
-st = urlparse.parse_qs(os.environ['QUERY_STRING'])
-
 print "Content-Type: text/html;charset=utf-8"
 print
 print '<html><head><title>GET Request Echo</title> \
