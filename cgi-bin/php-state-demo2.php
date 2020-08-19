@@ -10,7 +10,7 @@ session_start();
 
 <?php
 echo "Name entered: " . $_SESSION["username"] . "<br>";
-echo "<a href="/php-state-demo.php">Session 2</a>";
+echo "<a href='/php-state-demo.php'>Session 1</a>";
 ?>
 
 </body>

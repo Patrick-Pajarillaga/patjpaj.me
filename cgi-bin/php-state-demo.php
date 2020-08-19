@@ -11,7 +11,7 @@ session_start();
 <?php
 $_SESSION["username"] = $_POST["username"];
 echo "Name entered: " . $_POST["username"];
-echo "<a href="/php-state-demo2.php">Session 2</a>";
+echo "<a href='/php-state-demo2.php'>Session 2</a>";
 ?>
 
 </body>
