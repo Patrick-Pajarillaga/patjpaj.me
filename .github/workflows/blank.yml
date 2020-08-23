@@ -32,6 +32,4 @@ jobs:
           git --work-tree=./../../www/patjpaj.me/public_html/ fetch --all
           git --work-tree=./../../www/patjpaj.me/public_html/ reset --hard HEAD
           git --work-tree=./../../www/patjpaj.me/public_html/ merge origin/master
-          cd ../../www/patjpaj.me/public_html/
-          sudo chmod a+x -R cgi-bin/
         key: ${{ secrets.PRIVATE_KEY }}
