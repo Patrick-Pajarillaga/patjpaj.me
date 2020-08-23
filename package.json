@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Patrick-Pajarillaga/patjpaj.me/issues"
   },
-  "homepage": "https://github.com/Patrick-Pajarillaga/patjpaj.me#readme"
+  "homepage": "https://github.com/Patrick-Pajarillaga/patjpaj.me#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
