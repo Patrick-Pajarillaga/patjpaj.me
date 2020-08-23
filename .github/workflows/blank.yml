@@ -22,7 +22,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: executing remote ssh commands using password
+    - name: Fetching from Github Repo
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -32,4 +32,16 @@ jobs:
           git --work-tree=./../../www/patjpaj.me/public_html/ fetch --all
           git --work-tree=./../../www/patjpaj.me/public_html/ reset --hard HEAD
           git --work-tree=./../../www/patjpaj.me/public_html/ merge origin/master
+        key: ${{ secrets.PRIVATE_KEY }}
+
+    - uses: actions/checkout@v2
+
+    - name: Changing Permissions of executables
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        script: |
+          cd ../../var/www/patjpaj.me/public_html
+          sudo chmod a+x -R cgi-bin/
         key: ${{ secrets.PRIVATE_KEY }}
