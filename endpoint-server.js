@@ -5,6 +5,10 @@ app.get('/', function (req, res) {
   res.send('Hello World');
 })
 
+app.get("/browser", (req, res, next) => {
+  res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+});
+
 var server = app.listen(8081, function () {
   var host = server.address().address;
   var port = server.address().port;
