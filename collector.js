@@ -445,6 +445,22 @@ function reportPerf(measureName, data, customProperties = {}) {
     });
     // TODO: send payload to endpoint
     console.log(payload);
+    if(measureName == "initialBrowserData") {
+      fetch('https://patjpaj.me/browser', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+      console.error('Error:', error);
+      });
+    }
   });
 }
 

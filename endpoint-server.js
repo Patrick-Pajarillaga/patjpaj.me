@@ -9,6 +9,10 @@ app.get("/browser", (req, res, next) => {
   res.json(["Tony","Lisa","Michael","Ginger","Food"]);
 });
 
+app.post("/browser", (req, res, next) => {
+  res.send("Browser Data Recieved!");
+});
+
 var server = app.listen(8081, function () {
   var host = server.address().address;
   var port = server.address().port;
