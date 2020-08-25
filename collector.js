@@ -454,7 +454,9 @@ function reportPerf(measureName, data, customProperties = {}) {
         },
         body: JSON.stringify(payload),
       })
-      .then(response => response.json())
+      .then(response => {
+        response.json();
+      })
       .then(data => {
         console.log('Success:', data);
       })
