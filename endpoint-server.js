@@ -1,5 +1,14 @@
 var express = require('express');
 var app = express();
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "Lm@0Rigt",
+  database: "patjpajme"
+});
+
 
 app.use(express.json());
 
@@ -12,8 +21,13 @@ app.get("/browser", (req, res, next) => {
 });
 
 app.post("/browser", (req, res, next) => {
-  res.send("Browser Data Recieved!");
-  res.json(req.body);
+  con.connect(function(err) {
+    if (err) throw err;
+    con.query("SELECT * FROM initialBrowserData", function (err, result, fields) {
+      if (err) throw err;
+      res.json(result);
+    });
+  });
 });
 
 var server = app.listen(8081, function () {
