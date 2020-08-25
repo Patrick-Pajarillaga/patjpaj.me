@@ -26,6 +26,7 @@ app.post("/browser", (req, res, next) => {
     con.query("SELECT * FROM initialBrowserData", function (err, result, fields) {
       if (err) throw err;
       res.json(result);
+      console.log("Entered Database");
     });
   });
 });
