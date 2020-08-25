@@ -446,7 +446,7 @@ function reportPerf(measureName, data, customProperties = {}) {
     // TODO: send payload to endpoint
     console.log(payload);
     if(measureName == "initialBrowserData") {
-      fetch('https://patjpaj.me/browser', {
+      fetch('https://patjpaj.me/api/browser', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
