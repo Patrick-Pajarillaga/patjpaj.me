@@ -9,12 +9,6 @@ var con = mysql.createConnection({
   database: "patjpajme"
 });
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
-
-
 app.use(express.json());
 
 app.get('/', function (req, res) {
@@ -26,7 +20,13 @@ app.get("/browser", (req, res, next) => {
 });
 
 app.post("/browser", (req, res, next) => {
-  res.json(req.body);
+  con.connect(function(err) {
+    if (err) throw err;
+    con.query("SELECT * FROM initialBrowserData", function (err, result, fields) {
+      if (err) throw err;
+      res.json(result);
+    });
+  });
 });
 
 var server = app.listen(8081, function () {
