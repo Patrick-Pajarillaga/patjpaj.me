@@ -9,6 +9,11 @@ var con = mysql.createConnection({
   database: "patjpajme"
 });
 
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
 
 app.use(express.json());
 
