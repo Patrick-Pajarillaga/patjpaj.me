@@ -11,6 +11,7 @@ app.get("/browser", (req, res, next) => {
 
 app.post("/browser", (req, res, next) => {
   res.send("Browser Data Recieved!");
+  res.json(req.body);
 });
 
 var server = app.listen(8081, function () {
