@@ -21,14 +21,7 @@ app.get("/browser", (req, res, next) => {
 });
 
 app.post("/browser", (req, res, next) => {
-  con.connect(function(err) {
-    if (err) throw err;
-    con.query("SELECT * FROM initialBrowserData", function (err, result, fields) {
-      if (err) throw err;
-      res.json(result);
-      console.log("Entered Database");
-    });
-  });
+  res.json(req.body);
 });
 
 var server = app.listen(8081, function () {
