@@ -6,7 +6,7 @@ app.get('/', function (req, res) {
 })
 
 app.get("/browser", (req, res, next) => {
-  res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+  res.json(["Tony","Lisa","Michael","Gunga","Food"]);
 });
 
 app.post("/browser", (req, res, next) => {
