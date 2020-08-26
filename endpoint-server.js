@@ -30,9 +30,8 @@ app.post("/browser", (req, res, next) => {
   res.send(req.body.metricName);
   con.connect(function(err) {
     if (err) throw err;
-    var sql = "INSERT INTO initialBrowserData (data, vitalScore) VALUES ?";
-    var values = (JSON.stringify(req.body.data), req.body.vitalScore);
-    con.query(sql, values, function (err, result) {
+    var sql = `INSERT INTO initialBrowserData (data, vitalScore) VALUES (${JSON.stringify(req.body.data)}, ${req.body.vitalScore})`;
+    con.query(sql, function (err, result) {
       if (err) throw err;
     });
   });
