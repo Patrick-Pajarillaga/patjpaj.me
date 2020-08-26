@@ -465,7 +465,7 @@ function reportPerf(measureName, data, customProperties = {}) {
       });
     }
     else {
-      console.log("SENDING BROWSER DATA")
+      console.log("SENDING OTHER DATA")
       var url = 'https://patjpaj.me/api/' + measureName;
       fetch(url, {
         method: 'POST', // or 'PUT'

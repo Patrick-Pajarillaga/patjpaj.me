@@ -16,20 +16,20 @@ app.get('/', function (req, res) {
   res.send('Hello World');
 })
 
-app.get("/browser", (req, res, next) => {
+app.get("/:name", (req, res, next) => {
   con.connect(function(err) {
     if (err) throw err;
-    con.query("SELECT * FROM initialBrowserData", function (err, result, fields) {
+    con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
       if (err) throw err;
       res.json(result);
     });
   });
 });
 
-app.get("/browser/:id", (req, res, next) => {
+app.get("/:name/:id", (req, res, next) => {
   con.connect(function(err) {
     if (err) throw err;
-    var sql_string = `SELECT * FROM initialBrowserData WHERE id=${req.params.id}`;
+    var sql_string = `SELECT * FROM ${req.params.name} WHERE id=${req.params.id}`;
     con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
       res.json(result);
@@ -37,21 +37,21 @@ app.get("/browser/:id", (req, res, next) => {
   });
 });
 
-app.post("/browser", (req, res, next) => {
+app.post("/:name", (req, res, next) => {
   res.send(req.body.metricName);
   con.connect(function(err) {
     if (err) throw err;
-    var sql = `INSERT INTO initialBrowserData (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', 'null')`;
+    var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', 'null')`;
     con.query(sql, function (err, result) {
       if (err) throw err;
     });
   });
 });
 
-app.delete("/browser/:id", (req, res, next) => {
+app.delete("/:name/:id", (req, res, next) => {
   con.connect(function(err) {
     if (err) throw err;
-    var sql_string = `DELETE FROM initialBrowserData WHERE id=${req.params.id}`;
+    var sql_string = `DELETE FROM ${req.params.name} WHERE id=${req.params.id}`;
     con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
       res.send('Deleted Entry');
@@ -59,16 +59,17 @@ app.delete("/browser/:id", (req, res, next) => {
   });
 });
 
-app.put("/browser/:id", (req, res, next) => {
+app.put("/:name/:id", (req, res, next) => {
   con.connect(function(err) {
     if (err) throw err;
-    var sql_string = `UPDATE initialBrowserData SET data='${JSON.stringify(req.body.data)}' WHERE id=${req.params.id}`;
+    var sql_string = `UPDATE ${req.params.name} SET data='${JSON.stringify(req.body.data)}' WHERE id=${req.params.id}`;
     con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
       res.send('Updated Entry');
     });
   });
 });
+
 
 var server = app.listen(8081, function () {
   var host = server.address().address;
