@@ -51,7 +51,7 @@ app.post("/browser", (req, res, next) => {
 app.delete("/browser/:id", (req, res, next) => {
   con.connect(function(err) {
     if (err) throw err;
-    var sql_string = `DELETE * FROM initialBrowserData WHERE id=${req.params.id}`;
+    var sql_string = `DELETE FROM initialBrowserData WHERE id=${req.params.id}`;
     con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
       res.send('Deleted Entry');
