@@ -430,6 +430,11 @@ function pushTask(cb) {
   }
 }
 
+function pause(milliseconds) {
+	var dt = new Date();
+	while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+}
+
 /**
  * Sends the User timing measure to analyticsTracker
  */
@@ -445,6 +450,7 @@ function reportPerf(measureName, data, customProperties = {}) {
     });
     // TODO: send payload to endpoint
     console.log(payload);
+    pause(3000);
     if(measureName) {
       console.log("SENDING BROWSER DATA")
       fetch('https://patjpaj.me/api/' + measureName, {
