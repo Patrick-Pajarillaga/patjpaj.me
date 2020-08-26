@@ -48,6 +48,28 @@ app.post("/browser", (req, res, next) => {
   });
 });
 
+app.delete("/browser/:id", (req, res, next) => {
+  con.connect(function(err) {
+    if (err) throw err;
+    var sql_string = `DELETE * FROM initialBrowserData WHERE id=${req.params.id}`;
+    con.query(sql_string, function (err, result, fields) {
+      if (err) throw err;
+      res.send("Deleted Entry");
+    });
+  });
+});
+
+app.put("/browser/:id", (req, res, next) => {
+  con.connect(function(err) {
+    if (err) throw err;
+    var sql_string = `UPDATE initialBrowserData SET data='${JSON.stringify(req.body.data)}' WHERE id=${req.params.id}`;
+    con.query(sql_string, function (err, result, fields) {
+      if (err) throw err;
+      res.send("Updated Entry");
+    });
+  });
+});
+
 var server = app.listen(8081, function () {
   var host = server.address().address;
   var port = server.address().port;
