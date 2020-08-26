@@ -445,9 +445,9 @@ function reportPerf(measureName, data, customProperties = {}) {
     });
     // TODO: send payload to endpoint
     console.log(payload);
-    if(measureName == "initialBrowserData") {
+    if(measureName == "fp") {
       console.log("SENDING BROWSER DATA")
-      fetch('https://patjpaj.me/api/initialBrowserData', {
+      fetch('https://patjpaj.me/api/fp', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
@@ -464,6 +464,7 @@ function reportPerf(measureName, data, customProperties = {}) {
       console.error('Error:', error);
       });
     }
+    /*
     else {
       console.log("SENDING OTHER DATA")
       var url = 'https://patjpaj.me/api/' + measureName;
@@ -486,7 +487,8 @@ function reportPerf(measureName, data, customProperties = {}) {
         console.error('Error:', error);
         });
       },2000);
-    }    
+    } 
+    */   
   });
 }
 
