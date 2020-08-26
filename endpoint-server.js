@@ -29,7 +29,8 @@ app.get("/browser", (req, res, next) => {
 app.get("/browser/:id", (req, res, next) => {
   con.connect(function(err) {
     if (err) throw err;
-    con.query("SELECT * FROM initialBrowserData WHERE id = "+req.params.id, function (err, result, fields) {
+    var sql_string = `SELECT * FROM initialBrowserData WHERE id=${req.params.id}`;
+    con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
       res.json(result);
     });
