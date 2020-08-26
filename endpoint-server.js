@@ -54,7 +54,7 @@ app.delete("/browser/:id", (req, res, next) => {
     var sql_string = `DELETE * FROM initialBrowserData WHERE id=${req.params.id}`;
     con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
-      res.send("Deleted Entry");
+      res.send('Deleted Entry');
     });
   });
 });
@@ -65,7 +65,7 @@ app.put("/browser/:id", (req, res, next) => {
     var sql_string = `UPDATE initialBrowserData SET data='${JSON.stringify(req.body.data)}' WHERE id=${req.params.id}`;
     con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
-      res.send("Updated Entry");
+      res.send('Updated Entry');
     });
   });
 });
