@@ -24,7 +24,7 @@ app.get("/:name", (req, res, next) => {
     if (err) throw err;
     res.send(result);
   });
-  con.release();
+  con.end();
 });
 
 app.get("/:name/:id", (req, res, next) => {
