@@ -466,7 +466,7 @@ function reportPerf(measureName, data, customProperties = {}) {
     }
     else {
       console.log("SENDING BROWSER DATA")
-      var url = 'https://patjpaj.me/api/' + payload.metricName;
+      var url = 'https://patjpaj.me/api/' + measureName;
       fetch(url, {
         method: 'POST', // or 'PUT'
         headers: {
