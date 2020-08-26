@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var queue = require('express-queue');
 var mysql = require('mysql');
 const { json } = require('express');
 
@@ -11,6 +12,7 @@ var con = mysql.createConnection({
 });
 
 app.use(express.json());
+app.use(queue({ activeLimit: 2, queuedLimit: -1 }));
 
 app.get('/', function (req, res) {
   res.send('Hello World');
