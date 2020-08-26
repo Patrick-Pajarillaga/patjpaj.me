@@ -486,7 +486,7 @@ function reportPerf(measureName, data, customProperties = {}) {
         .catch((error) => {
         console.error('Error:', error);
         });
-      },500);
+      },2000);
     }
   });
 }
