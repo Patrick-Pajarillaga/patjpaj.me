@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var mysql = require('mysql');
+const { json } = require('express');
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -30,7 +31,7 @@ app.post("/browser", (req, res, next) => {
   con.connect(function(err) {
     if (err) throw err;
     var sql = "INSERT INTO initialBrowserData (data, vitalScore) VALUES ?";
-    var values = (req.body.data, req.body.vitalScore);
+    var values = (JSON.stringify(req.body.data), req.body.vitalScore);
     con.query(sql, values, function (err, result) {
       if (err) throw err;
     });
