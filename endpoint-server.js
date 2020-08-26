@@ -23,7 +23,7 @@ app.get("/:name", (req, res, next) => {
     if (err) throw err;
     con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
       if (err) throw err;
-      res.json(result);
+      res.send(result);
     });
   });
 });
