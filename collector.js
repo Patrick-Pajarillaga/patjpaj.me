@@ -467,23 +467,26 @@ function reportPerf(measureName, data, customProperties = {}) {
     else {
       console.log("SENDING OTHER DATA")
       var url = 'https://patjpaj.me/api/' + measureName;
-      fetch(url, {
-        method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-          'Retry-After': '1',
-        },
-        body: JSON.stringify(payload),
-      })
-      .then(response => {
-        response.json();
-      })
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-      console.error('Error:', error);
-      });
+      setTimeout(function(){
+        console.log('after');
+        fetch(url, {
+          method: 'POST', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': '1',
+          },
+          body: JSON.stringify(payload),
+        })
+        .then(response => {
+          response.json();
+        })
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+      },500);
     }
   });
 }
