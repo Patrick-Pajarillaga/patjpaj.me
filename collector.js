@@ -471,6 +471,7 @@ function reportPerf(measureName, data, customProperties = {}) {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
+          'Retry-After': '1',
         },
         body: JSON.stringify(payload),
       })
