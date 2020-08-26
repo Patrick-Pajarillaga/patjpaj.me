@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 app.get("/:name", (req, res, next) => {
   con.connect(function(err) {
     if (err) throw err;
-    con.query(`SELECT * FROM '${req.params.name}'`, function (err, result, fields) {
+    con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
       if (err) throw err;
       res.json(result);
     });
