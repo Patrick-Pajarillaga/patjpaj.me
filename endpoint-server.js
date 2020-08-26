@@ -26,6 +26,16 @@ app.get("/browser", (req, res, next) => {
   });
 });
 
+app.get("/browser/:id", (req, res, next) => {
+  con.connect(function(err) {
+    if (err) throw err;
+    con.query("SELECT * FROM initialBrowserData WHERE id = "+req.params.id, function (err, result, fields) {
+      if (err) throw err;
+      res.json(result);
+    });
+  });
+});
+
 app.post("/browser", (req, res, next) => {
   res.send(req.body.metricName);
   con.connect(function(err) {
