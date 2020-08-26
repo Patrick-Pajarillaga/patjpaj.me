@@ -449,6 +449,7 @@ function reportPerf(measureName, data, customProperties = {}) {
       vitalsScore: getVitalsScore(measureName, data),
     });
     // TODO: send payload to endpoint
+    pause(1000);
     console.log(payload);
     if(measureName) {
       console.log("SENDING BROWSER DATA")
