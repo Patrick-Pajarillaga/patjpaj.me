@@ -467,14 +467,12 @@ function reportPerf(measureName, data, customProperties = {}) {
     else {
       console.log("SENDING OTHER DATA")
       var url = 'https://patjpaj.me/api/' + measureName;
-      setTimeout(function(){
-        console.log('after');
         fetch(url, {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
             'Retry-After': '1',
-          },
+            'Keep-Alive': 'timeout=5, max=1000',
           body: JSON.stringify(payload),
         })
         .then(response => {
@@ -486,8 +484,7 @@ function reportPerf(measureName, data, customProperties = {}) {
         .catch((error) => {
         console.error('Error:', error);
         });
-      },2000);
-    }
+     }
   });
 }
 
