@@ -27,16 +27,14 @@ app.get("/browser", (req, res, next) => {
 
 app.post("/browser", (req, res, next) => {
   res.send(req.body.metricName);
-  /*con.connect(function(err) {
+  con.connect(function(err) {
     if (err) throw err;
     var sql = "INSERT INTO initialBrowserData (id, data, vitalScore) VALUES ?";
-    var values = [1, req.body.data, req.body.vitalScore];
-    con.query(sql, [VALUES], function (err, result) {
+    var values = (req.body.data, req.body.vitalScore);
+    con.query(sql, values, function (err, result) {
       if (err) throw err;
-      res.send(req.body.metricName);
     });
   });
-  */
 });
 
 var server = app.listen(8081, function () {
