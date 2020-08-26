@@ -19,35 +19,32 @@ app.get('/', function (req, res) {
 })
 
 app.get("/:name", (req, res, next) => {
-  con.connect(function(err) {
+  con.connect();
+  con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
     if (err) throw err;
-    con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
-      if (err) throw err;
-      res.send(result);
-    });
+    res.send(result);
   });
+  con.end();
 });
 
 app.get("/:name/:id", (req, res, next) => {
-  con.connect(function(err) {
+  con.connect();
+  var sql_string = `SELECT * FROM ${req.params.name} WHERE id=${req.params.id}`;
+  con.query(sql_string, function (err, result, fields) {
     if (err) throw err;
-    var sql_string = `SELECT * FROM ${req.params.name} WHERE id=${req.params.id}`;
-    con.query(sql_string, function (err, result, fields) {
-      if (err) throw err;
-      res.json(result);
-    });
+    res.json(result);
   });
+  con.end();
 });
 
 app.post("/:name", (req, res, next) => {
   res.send(req.body.metricName);
-  con.connect(function(err) {
+  con.connect();
+  var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', 'null')`;
+  con.query(sql, function (err, result) {
     if (err) throw err;
-    var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', 'null')`;
-    con.query(sql, function (err, result) {
-      if (err) throw err;
-    });
   });
+  con.end();
 });
 
 app.delete("/:name/:id", (req, res, next) => {
@@ -59,6 +56,7 @@ app.delete("/:name/:id", (req, res, next) => {
       res.send('Deleted Entry');
     });
   });
+  con.end();
 });
 
 app.put("/:name/:id", (req, res, next) => {
@@ -70,6 +68,7 @@ app.put("/:name/:id", (req, res, next) => {
       res.send('Updated Entry');
     });
   });
+  con.end();
 });
 
 
