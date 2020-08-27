@@ -31,15 +31,32 @@
   <br>
   <zing-grid caption="clsFinal" src="https://patjpaj.me/api/clsFinal"></zing-grid>
   <br>
-  <zing-grid caption="tbt" src="https://patjpaj.me/api/tbt"></zing-grid>
+  <zing-grid id="tbt" caption="tbt" src="https://patjpaj.me/api/tbt"></zing-grid>
   <br>
+  <button id="reload">Reload</button>
 
   <footer>
     <script>
       document.write(`Live @ ${new Date()}`);
     </script>
   </footer>
-
+  <script>
+    var reload = document.getElementById('reload');
+    var tbt = document.getElementById('tbt');
+    reload.addEventListener('click', function() {
+      fetch('https://patjpaj.me/api/tbt')
+      .then(response => {
+        response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+        tbt.setAttribute("data", JSON.stringify(data));
+      })
+      .catch((error) => {
+      console.error('Error:', error);
+      });
+    });
+  </script>
 </body>
 
 </html>
