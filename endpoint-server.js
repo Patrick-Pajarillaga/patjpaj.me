@@ -41,6 +41,9 @@ app.post("/:name", (req, res, next) => {
   res.send(req.body.metricName);
   con.connect();
   var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
+  if(req.body.metricName == "initialBrowserData") {
+    sql = `INSERT INTO ${req.params.name} (vitalsScore, language, userAgent, innerWidth, outerWidth, innerHeight, outerHeight, cookieEnabled) VALUES ('${req.body.vitalsScore}', '${req.data.language}', '${req.data.userAgent}', '${req.data.innerWidth}', '${req.data.outerWidth}', '${req.data.innerHeight}', '${req.data.outerHeight}', '${req.data.cookieEnabled}')`;
+  }
   con.query(sql, function (err, result) {
     if (err) throw err;
   });
