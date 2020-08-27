@@ -49,8 +49,7 @@
         response.json();
       })
       .then(data => {
-        console.log(typeof data);
-        tbt.setAttribute("data", JSON.stringify(data));
+        tbt.setData(data);
       })
       .catch((error) => {
       console.error('Error:', error);
