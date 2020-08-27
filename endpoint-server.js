@@ -22,7 +22,7 @@ app.get("/:name", (req, res, next) => {
   con.connect();
   con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
     if (err) throw err;
-    res.send(result);
+    res.send(typeof result);
   });
   con.end();
 });
