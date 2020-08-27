@@ -19,6 +19,7 @@
 
     let fp = [];
     let tbt = [];
+    let cls = [];
     function fet() {
       
       fetch('https://patjpaj.me/api/fp')
@@ -31,6 +32,19 @@
           temp = temp.replace('"', ''); 
           console.log(typeof parseFloat(temp));
           fp.push(parseFloat(temp));
+        }
+      });
+
+      fetch('https://patjpaj.me/api/cls')
+      .then(response => response.json())
+      .then(data => {
+        let arr = Object.values(data);
+        console.log("Updating FP with data");
+        for(var i=0; i < arr.length; i++) {
+          let temp = arr[i].data;
+          temp = temp.replace('"', ''); 
+          console.log(typeof parseFloat(temp));
+          cls.push(parseFloat(temp));
         }
       });
 
@@ -60,7 +74,7 @@
           fontSize: 24,
         },
         'scale-y': {
-          'max-value': "10",
+          'max-value': "3",
         },
         series: [
           {
@@ -72,6 +86,11 @@
             // Plot 1 values, linear data
             values: tbt,
             text: 'TBT',
+          },
+          {
+            // Plot 1 values, linear data
+            values: cls,
+            text: 'CLS',
           },
         ]
     };
