@@ -25,7 +25,7 @@
       for(var i=0; i < arr.length; i++) {
         let temp = arr[i].data;
         temp = temp.replace('"', ''); 
-        myConfig.series[0].values.push(parseFloat(temp));
+        myConfig.series[0].values.push(parseInt(temp));
       }
     });
 
