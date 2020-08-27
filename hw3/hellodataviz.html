@@ -47,10 +47,6 @@
           console.log(typeof parseFloat(temp));
           cls.push(parseFloat(temp));
         }
-        zingchart.render({
-          id: 'bar',
-          data: barConfig,
-        });
       });
 
       fetch('https://patjpaj.me/api/tbt')
@@ -68,6 +64,10 @@
         zingchart.render({
           id: 'myChart',
           data: myConfig,
+        });
+        zingchart.render({
+          id: 'bar',
+          data: barConfig,
         });
       });
     }
