@@ -457,6 +457,7 @@ function reportPerf(measureName, data, customProperties = {}) {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
+          'Cache-Control': 'public',
         },
         body: JSON.stringify(payload),
       })
