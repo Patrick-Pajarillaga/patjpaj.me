@@ -32,6 +32,7 @@
       ]
     };
 
+    let fp = [];
     fetch('https://patjpaj.me/api/fp')
     .then(response => response.json())
     .then(data => {
@@ -39,9 +40,11 @@
       console.log(typeof data);
       let arr = Object.values(data);
       for(var i=0; i < arr.length; i++) {
-        myConfig.series.values.push(parseFloat(arr[i].data));
+        fp.push(parseFloat(arr[i].data));
       }
     });
+
+    myConfig.series[0].values = fp;
 
 
 
