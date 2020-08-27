@@ -36,8 +36,6 @@
     fetch('https://patjpaj.me/api/fp')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      console.log(typeof data);
       let arr = Object.values(data);
       for(var i=0; i < arr.length; i++) {
         let temp = arr[i].data;
@@ -45,6 +43,8 @@
         myConfig.series[0].values.push(parseFloat(temp));
       }
     });
+
+    console.log(myConfig.series[0].values);
 
     // Render Method[3]
     zingchart.render({
