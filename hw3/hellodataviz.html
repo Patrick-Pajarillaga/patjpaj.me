@@ -30,6 +30,7 @@
           console.log(typeof parseFloat(temp));
           fp.push(parseFloat(temp));
         }
+        zingchart.exec('myChart', 'updateobject', myConfig);
       });
     }
 
@@ -50,8 +51,6 @@
 
     // Render Method[3]
     window.onload=function(){
-      console.log('IM READY');
-      console.log("YUMPS");
       fet();
       zingchart.render({
         id: 'myChart',
