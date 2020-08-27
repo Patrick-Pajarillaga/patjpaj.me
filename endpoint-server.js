@@ -4,7 +4,8 @@ var queue = require('express-queue');
 var mysql = require('mysql');
 const { json } = require('express');
 
-var con = mysql.createConnection({
+var pool = mysql.createPool({
+  connectionLimit: 10,
   host: "localhost",
   user: "root",
   password: "Lm@0Rigt",
@@ -19,59 +20,62 @@ app.get('/', function (req, res) {
 })
 
 app.get("/:name", (req, res, next) => {
-  con.connect();
-  con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
-    if (err) throw err;
-    res.json(result);
+  pool.getConnection(function (err, con) {
+    con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
+      if (err) throw err;
+      res.json(result);
+      con.release();
+    });
   });
-  con.end();
 });
 
 app.get("/:name/:id", (req, res, next) => {
-  con.connect();
-  var sql_string = `SELECT * FROM ${req.params.name} WHERE id=${req.params.id}`;
-  con.query(sql_string, function (err, result, fields) {
-    if (err) throw err;
-    res.json(result);
+  pool.getConnection(function (err, con) {
+    var sql_string = `SELECT * FROM ${req.params.name} WHERE id=${req.params.id}`;
+    con.query(sql_string, function (err, result, fields) {
+      if (err) throw err;
+      con.release();
+      res.json(result);
+    });
   });
-  con.end();
 });
 
 app.post("/:name", (req, res, next) => {
   res.send(req.body.metricName);
-  con.connect();
-  var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
-  if(req.body.metricName == "initialBrowserData") {
-    sql = `INSERT INTO ${req.params.name} (vitalsScore, language, userAgent, innerWidth, outerWidth, innerHeight, outerHeight, cookieEnabled) VALUES ('${req.body.vitalsScore}', '${req.body.data.language}', '${req.body.data.userAgent}', '${req.body.data.innerWidth}', '${req.body.data.outerWidth}', '${req.body.data.innerHeight}', '${req.body.data.outerHeight}', '${req.body.data.cookieEnabled}')`;
-  }
-  con.query(sql, function (err, result) {
-    if (err) throw err;
+  pool.getConnection(function (err, con) {
+    var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
+    if(req.body.metricName == "initialBrowserData") {
+      sql = `INSERT INTO ${req.params.name} (vitalsScore, language, userAgent, innerWidth, outerWidth, innerHeight, outerHeight, cookieEnabled) VALUES ('${req.body.vitalsScore}', '${req.body.data.language}', '${req.body.data.userAgent}', '${req.body.data.innerWidth}', '${req.body.data.outerWidth}', '${req.body.data.innerHeight}', '${req.body.data.outerHeight}', '${req.body.data.cookieEnabled}')`;
+    }
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      con.release();
+    });
   });
-  con.end();
 });
 
 app.delete("/:name/:id", (req, res, next) => {
-  con.connect(function(err) {
+  pool.getConnection(function (err, con) {
     if (err) throw err;
     var sql_string = `DELETE FROM ${req.params.name} WHERE id=${req.params.id}`;
     con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
+      con.release();
       res.send('Deleted Entry');
     });
   });
-  con.end();
 });
 
 app.put("/:name/:id", (req, res, next) => {
-  con.connect(function(err) {
+  pool.getConnection(function (err, con) {
     if (err) throw err;
     var sql_string = `UPDATE ${req.params.name} SET data='${JSON.stringify(req.body.data)}' WHERE id=${req.params.id}`;
     con.query(sql_string, function (err, result, fields) {
       if (err) throw err;
+      con.release();
       res.send('Updated Entry');
     });
   });
-  con.end();
 });
 
 
