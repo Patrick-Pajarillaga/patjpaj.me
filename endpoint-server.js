@@ -40,7 +40,7 @@ app.get("/:name/:id", (req, res, next) => {
 app.post("/:name", (req, res, next) => {
   res.send(req.body.metricName);
   con.connect();
-  var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', 'null')`;
+  var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
   con.query(sql, function (err, result) {
     if (err) throw err;
   });
