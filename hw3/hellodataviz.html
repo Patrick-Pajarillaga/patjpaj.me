@@ -36,8 +36,8 @@
       ]
     };
 
-    for(const row of fp) {
-      myConfig.series.values.push(parseFloat(row.data));
+    for(var i=0; i < fp.length; i++) {
+      myConfig.series.values.push(parseFloat(fp[i].data));
     }
 
 
