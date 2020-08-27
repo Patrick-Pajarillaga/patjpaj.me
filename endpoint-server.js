@@ -26,56 +26,43 @@ app.get("/:name", (req, res, next) => {
   });
 });
 
-/*
+
 app.get("/:name/:id", (req, res, next) => {
-  pool.getConnection(function (err, con) {
-    var sql_string = `SELECT * FROM ${req.params.name} WHERE id=${req.params.id}`;
-    con.query(sql_string, function (err, result, fields) {
-      if (err) throw err;
-      con.release();
-      res.json(result);
-    });
+  var sql_string = `SELECT * FROM ${req.params.name} WHERE id=${req.params.id}`;
+  pool.query(sql_string, function (err, result, fields) {
+    if (err) throw err;
+    res.json(result);
   });
 });
 
 app.post("/:name", (req, res, next) => {
   res.send(req.body.metricName);
-  pool.getConnection(function (err, con) {
-    var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
-    if(req.body.metricName == "initialBrowserData") {
-      sql = `INSERT INTO ${req.params.name} (vitalsScore, language, userAgent, innerWidth, outerWidth, innerHeight, outerHeight, cookieEnabled) VALUES ('${req.body.vitalsScore}', '${req.body.data.language}', '${req.body.data.userAgent}', '${req.body.data.innerWidth}', '${req.body.data.outerWidth}', '${req.body.data.innerHeight}', '${req.body.data.outerHeight}', '${req.body.data.cookieEnabled}')`;
-    }
-    con.query(sql, function (err, result) {
-      if (err) throw err;
-      con.release();
-    });
+  var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
+  if(req.body.metricName == "initialBrowserData") {
+    sql = `INSERT INTO ${req.params.name} (vitalsScore, language, userAgent, innerWidth, outerWidth, innerHeight, outerHeight, cookieEnabled) VALUES ('${req.body.vitalsScore}', '${req.body.data.language}', '${req.body.data.userAgent}', '${req.body.data.innerWidth}', '${req.body.data.outerWidth}', '${req.body.data.innerHeight}', '${req.body.data.outerHeight}', '${req.body.data.cookieEnabled}')`;
+  }
+  pool.query(sql, function (err, result) {
+    if (err) throw err;
   });
 });
 
 app.delete("/:name/:id", (req, res, next) => {
-  pool.getConnection(function (err, con) {
+  var sql_string = `DELETE FROM ${req.params.name} WHERE id=${req.params.id}`;
+  pool.query(sql_string, function (err, result, fields) {
     if (err) throw err;
-    var sql_string = `DELETE FROM ${req.params.name} WHERE id=${req.params.id}`;
-    con.query(sql_string, function (err, result, fields) {
-      if (err) throw err;
-      con.release();
-      res.send('Deleted Entry');
-    });
+    con.release();
+    res.send('Deleted Entry');
   });
 });
 
 app.put("/:name/:id", (req, res, next) => {
-  pool.getConnection(function (err, con) {
+  var sql_string = `UPDATE ${req.params.name} SET data='${JSON.stringify(req.body.data)}' WHERE id=${req.params.id}`;
+  pool.query(sql_string, function (err, result, fields) {
     if (err) throw err;
-    var sql_string = `UPDATE ${req.params.name} SET data='${JSON.stringify(req.body.data)}' WHERE id=${req.params.id}`;
-    con.query(sql_string, function (err, result, fields) {
-      if (err) throw err;
-      con.release();
-      res.send('Updated Entry');
-    });
+    con.release();
+    res.send('Updated Entry');
   });
 });
-*/
 
 var server = app.listen(8081, function () {
   var host = server.address().address;
