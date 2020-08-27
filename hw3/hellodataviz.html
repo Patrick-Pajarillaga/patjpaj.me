@@ -40,10 +40,8 @@
       console.log(typeof data);
       let arr = Object.values(data);
       for(var i=0; i < arr.length; i++) {
-        console.log(arr[i].data);
-        console.log(typeof arr[i].data);
-        console.log(typeof parseFloat(arr[i].data));
-        console.log(parseFloat(arr[i].data));
+        let temp = arr[i].data;
+        temp.replace('"', ''); 
         fp.push(parseFloat(arr[i].data));
       }
     });
