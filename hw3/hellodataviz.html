@@ -17,7 +17,8 @@
   </footer>
   <script>
 
-    let fp = [0.0, 5.3, 3.2];
+    let fp = [];
+    let tbt = [];
     function fet() {
       
       fetch('https://patjpaj.me/api/fp')
@@ -30,6 +31,19 @@
           temp = temp.replace('"', ''); 
           console.log(typeof parseFloat(temp));
           fp.push(parseFloat(temp));
+        }
+      });
+
+      fetch('https://patjpaj.me/api/tbt')
+      .then(response => response.json())
+      .then(data => {
+        let arr = Object.values(data);
+        console.log("Updating TBT with data");
+        for(var i=0; i < arr.length; i++) {
+          let temp = arr[i].data;
+          temp = temp.replace('"', ''); 
+          console.log(typeof parseFloat(temp));
+          tbt.push(parseFloat(temp));
         }
         console.log("Rendering Chart");
         zingchart.render({
@@ -52,7 +66,12 @@
           {
             // Plot 1 values, linear data
             values: fp,
-            text: 'TEST',
+            text: 'FP',
+          },
+          {
+            // Plot 1 values, linear data
+            values: tbt,
+            text: 'TBT',
           },
         ]
     };
