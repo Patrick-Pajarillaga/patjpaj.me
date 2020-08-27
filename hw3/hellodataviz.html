@@ -104,6 +104,9 @@
 
     let myConfig = {
         type: 'line',
+        legend: {
+
+        },
         title: {
           text: 'fp vs. tbt vs. cls',
           fontSize: 24,
@@ -132,6 +135,9 @@
 
     let barConfig = {
         type: 'bar',
+        legend: {
+
+        },
         title: {
           text: 'FP AND TBT',
           fontSize: 24,
@@ -155,13 +161,24 @@
 
     let pieConfig = {
       type: "pie3d",
+      legend: {
+
+      },
       title: {
         text: "Vital Score Ratios for fid"
       },
       series: [
-        { values: n},
-        { values: g},
-        { values: p},
+        { values: n,
+          text: "Null"
+        },
+        { 
+          values: g,
+          text: "Good"
+        },
+        { 
+          values: p,
+          text: "Poor"
+        },
       ]
     };
 
