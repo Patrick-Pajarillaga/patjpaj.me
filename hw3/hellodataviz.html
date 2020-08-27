@@ -19,7 +19,9 @@
     let fp;
     fetch('https://patjpaj.me/api/fp')
     .then(response => response.json())
-    .then(data => fp = data);
+    .then(data => {
+      fp = data;
+    });
 
     let myConfig = {
       type: 'line',
@@ -36,9 +38,12 @@
       ]
     };
 
+    console.log(typeof fp);
+    /*
     for(var i=0; i < fp.length; i++) {
       myConfig.series.values.push(parseFloat(fp[i].data));
     }
+    */
 
 
 
