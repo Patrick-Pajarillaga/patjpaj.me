@@ -17,7 +17,8 @@
   </footer>
   <script>
 
-    let fp = [];
+    let fp = [0.5, 0.8];
+    /*
     fetch('https://patjpaj.me/api/fp')
     .then(response => response.json())
     .then(data => {
@@ -25,9 +26,10 @@
       for(var i=0; i < arr.length; i++) {
         let temp = arr[i].data;
         temp = temp.replace('"', ''); 
-        myConfig.series[0].values.push(parseInt(temp));
+        myConfig.series[0].values.push(parseFloat(temp));
       }
     });
+    */
 
     let myConfig = {
       type: 'line',
