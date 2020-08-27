@@ -18,19 +18,6 @@
   <script>
 
     let fp = [0.0, 5.3, 3.2];
-    fetch('https://patjpaj.me/api/fp')
-    .then(response => response.json())
-    .then(data => {
-      let arr = Object.values(data);
-      for(var i=0; i < arr.length; i++) {
-        let temp = arr[i].data;
-        temp = temp.replace('"', ''); 
-        console.log(typeof parseFloat(temp));
-        fp.push(parseFloat(temp));
-        zingchart.exec('myChart', 'reload');
-      }
-    });
-
     let myConfig = {
       type: 'line',
       title: {
@@ -51,6 +38,18 @@
     // Render Method[3]
     window.onload=function(){
       console.log('IM READY');
+      fetch('https://patjpaj.me/api/fp')
+      .then(response => response.json())
+      .then(data => {
+        let arr = Object.values(data);
+        for(var i=0; i < arr.length; i++) {
+          let temp = arr[i].data;
+          temp = temp.replace('"', ''); 
+          console.log(typeof parseFloat(temp));
+          fp.push(parseFloat(temp));
+        }
+      });
+
       zingchart.render({
         id: 'myChart',
         data: myConfig,
