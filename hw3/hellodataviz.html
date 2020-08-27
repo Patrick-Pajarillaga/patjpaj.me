@@ -25,6 +25,7 @@
       for(var i=0; i < arr.length; i++) {
         let temp = arr[i].data;
         temp = temp.replace('"', ''); 
+        console.log(parseFloat(temp));
         fp.push(parseFloat(temp));
       }
     });
