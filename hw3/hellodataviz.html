@@ -24,13 +24,18 @@
       .then(response => response.json())
       .then(data => {
         let arr = Object.values(data);
+        console.log("Updating FP with data");
         for(var i=0; i < arr.length; i++) {
           let temp = arr[i].data;
           temp = temp.replace('"', ''); 
           console.log(typeof parseFloat(temp));
           fp.push(parseFloat(temp));
         }
-        zingchart.exec('myChart', 'updateobject', myConfig);
+        console.log("Rendering Chart");
+        zingchart.render({
+          id: 'myChart',
+          data: myConfig,
+        });
       });
     }
 
@@ -52,10 +57,6 @@
     // Render Method[3]
     window.onload=function(){
       fet();
-      zingchart.render({
-        id: 'myChart',
-        data: myConfig,
-      });
     };
   </script>
 
