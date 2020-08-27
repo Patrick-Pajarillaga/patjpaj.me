@@ -10,6 +10,7 @@
 
 <body>
   <div id="myChart"></div>
+  <div id="bar"></div>
   <footer>
     <script>
       document.write(`Live @ ${new Date()}`);
@@ -46,6 +47,10 @@
           console.log(typeof parseFloat(temp));
           cls.push(parseFloat(temp));
         }
+        zingchart.render({
+          id: 'barChart',
+          data: barConfig,
+        });
       });
 
       fetch('https://patjpaj.me/api/tbt')
@@ -91,6 +96,29 @@
             // Plot 1 values, linear data
             values: cls,
             text: 'CLS',
+          },
+        ]
+    };
+
+    let barConfig = {
+        type: 'bar',
+        title: {
+          text: 'FP AND TBT',
+          fontSize: 24,
+        },
+        'scale-y': {
+          'max-value': "3",
+        },
+        series: [
+          {
+            // Plot 1 values, linear data
+            values: fp,
+            text: 'FP',
+          },
+          {
+            // Plot 1 values, linear data
+            values: tbt,
+            text: 'TBT',
           },
         ]
     };
