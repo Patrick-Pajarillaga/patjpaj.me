@@ -16,7 +16,13 @@ app.use(express.json());
 app.use(queue({ activeLimit: 2, queuedLimit: -1 }));
 
 app.get('/', function (req, res) {
-  res.send('Hello World');
+  pool.getConnection(function (err, con) {
+    if (err) {
+      return res.send(400, "SQL BROKE");
+    } 
+    res.json(result);
+    con.release();
+  });
 })
 
 app.get("/:name", (req, res, next) => {
