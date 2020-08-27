@@ -17,21 +17,6 @@
   </footer>
   <script>
 
-    let myConfig = {
-      type: 'line',
-      title: {
-        text: 'Data Basics',
-        fontSize: 24,
-      },
-      series: [
-        {
-          // Plot 1 values, linear data
-          values: [],
-          text: 'TEST',
-        },
-      ]
-    };
-
     let fp = [];
     fetch('https://patjpaj.me/api/fp')
     .then(response => response.json())
@@ -43,6 +28,21 @@
         myConfig.series[0].values.push(parseFloat(temp));
       }
     });
+
+    let myConfig = {
+      type: 'line',
+      title: {
+        text: 'Data Basics',
+        fontSize: 24,
+      },
+      series: [
+        {
+          // Plot 1 values, linear data
+          values: fp,
+          text: 'TEST',
+        },
+      ]
+    };
 
     console.log(myConfig.series[0].values);
 
