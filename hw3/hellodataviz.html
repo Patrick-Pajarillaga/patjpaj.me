@@ -42,15 +42,9 @@
       for(var i=0; i < arr.length; i++) {
         let temp = arr[i].data;
         temp = temp.replace('"', ''); 
-        fp.push(parseFloat(temp));
+        myConfig.series[0].values.push(parseFloat(temp));
       }
     });
-
-    console.log(fp);
-    myConfig.series[0].values = fp;
-
-
-
 
     // Render Method[3]
     zingchart.render({
