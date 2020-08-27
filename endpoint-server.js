@@ -16,25 +16,17 @@ app.use(express.json());
 app.use(queue({ activeLimit: 2, queuedLimit: -1 }));
 
 app.get('/', function (req, res) {
-  pool.getConnection(function (err, con) {
-    if (err) {
-      return res.send(400, "SQL BROKE");
-    } 
-    res.json(result);
-    con.release();
-  });
-})
+    res.json(res);
+});
 
 app.get("/:name", (req, res, next) => {
-  pool.getConnection(function (err, con) {
-    con.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
-      if (err) throw err;
-      res.json(result);
-      con.release();
-    });
+  pool.query(`SELECT * FROM ${req.params.name}`, function (err, result, fields) {
+    if (err) throw err;
+    res.json(result);
   });
 });
 
+/*
 app.get("/:name/:id", (req, res, next) => {
   pool.getConnection(function (err, con) {
     var sql_string = `SELECT * FROM ${req.params.name} WHERE id=${req.params.id}`;
@@ -83,7 +75,7 @@ app.put("/:name/:id", (req, res, next) => {
     });
   });
 });
-
+*/
 
 var server = app.listen(8081, function () {
   var host = server.address().address;
