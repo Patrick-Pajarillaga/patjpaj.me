@@ -41,8 +41,8 @@
       let arr = Object.values(data);
       for(var i=0; i < arr.length; i++) {
         let temp = arr[i].data;
-        temp.replace('"', ''); 
-        fp.push(parseFloat(arr[i].data));
+        temp = temp.replace('"', ''); 
+        fp.push(parseFloat(temp));
       }
     });
 
