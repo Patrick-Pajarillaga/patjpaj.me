@@ -27,6 +27,7 @@
         temp = temp.replace('"', ''); 
         console.log(typeof parseFloat(temp));
         fp.push(parseFloat(temp));
+        
       }
     });
 
@@ -48,10 +49,12 @@
     console.log(myConfig.series[0].values);
 
     // Render Method[3]
-    zingchart.render({
-      id: 'myChart',
-      data: myConfig,
-    });
+    window.onload=function(){
+      zingchart.render({
+        id: 'myChart',
+        data: myConfig,
+      });
+    };
   </script>
 
 </body>
