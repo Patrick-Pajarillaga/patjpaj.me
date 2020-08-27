@@ -60,11 +60,13 @@
         console.log("Updating FID with data");
         for(var i=0; i < arr.length; i++) {
           let temp = arr[i].vitalScore;
-          console.log(temp);
+          //console.log(temp);
           if(temp == "null") {
+            console.log("Added to Null");
             n[0] += 1;
           }
           else if (temp == "good"){
+            console.log("Added to Good");
             g[0] += 1;
           }
           else {
@@ -154,7 +156,7 @@
     let pieConfig = {
       type: "pie3d",
       title: {
-        text: "3D Pie Chart"
+        text: "Vital Score Ratios for fid"
       },
       series: [
         { values: n},
