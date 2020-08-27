@@ -16,9 +16,10 @@
     </script>
   </footer>
   <script>
+    let fp;
     fetch('https://patjpaj.me/api/fp')
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => fp = data);
 
     let myConfig = {
       type: 'line',
@@ -29,21 +30,17 @@
       series: [
         {
           // Plot 1 values, linear data
-          values: [23,20,27,29,25,17,15],
-          text: 'Week 1',
+          values: [],
+          text: 'TEST',
         },
-        {
-          // Plot 2 values, linear data
-          values: [35,42,33,49,35,47,35],
-          text: 'Week 2'
-        },
-        {
-          // Plot 2 values, linear data
-          values: [15,22,13,33,44,27,31],
-          text: 'Week 3'
-        }
       ]
     };
+
+    for(const row of fp) {
+      myConfig.series.values.push(parseFloat(row.data));
+    }
+
+
 
     // Render Method[3]
     zingchart.render({
