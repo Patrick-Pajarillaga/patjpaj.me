@@ -5,11 +5,19 @@ var mysql = require('mysql');
 const { json } = require('express');
 
 var pool = mysql.createPool({
+  /*
   connectionLimit: 10,
   host: "localhost",
   user: "root",
   password: "Lm@0Rigt",
   database: "patjpajme"
+  */
+  connectionLimit: 10,
+  host: "db-mysql-patjpajme-do-user-7851401-0.a.db.ondigitalocean.com",
+  user: "pjp",
+  password: "Lm@0Rigt",
+  database: "patjpajme",
+  port: "25060"
 });
 
 app.use(express.json());
