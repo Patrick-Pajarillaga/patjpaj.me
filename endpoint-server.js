@@ -88,7 +88,6 @@ app.put("/:name/:id", (req, res, next) => {
   }
   pool.query(sql_string, function (err, result, fields) {
     if (err) throw err;
-    con.release();
     res.send('Updated Entry');
   });
 });
