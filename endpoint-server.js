@@ -53,7 +53,7 @@ app.get("/:name/:id", (req, res, next) => {
 app.post("/:name", (req, res, next) => {
   res.send(req.body.metricName);
   console.log(req.params.name == "accounts");
-  var sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
+  var sql = "";
   if(req.body.metricName == "initialBrowserData") {
     sql = `INSERT INTO ${req.params.name} (vitalsScore, language, userAgent, innerWidth, outerWidth, innerHeight, outerHeight, cookieEnabled) VALUES ('${req.body.vitalsScore}', '${req.body.data.language}', '${req.body.data.userAgent}', '${req.body.data.innerWidth}', '${req.body.data.outerWidth}', '${req.body.data.innerHeight}', '${req.body.data.outerHeight}', '${req.body.data.cookieEnabled}')`;
   }
@@ -63,6 +63,9 @@ app.post("/:name", (req, res, next) => {
       sql = `INSERT INTO ${req.params.name} (username, password, email, admin) VALUES ('${req.body.username}', '${hash}', '${req.body.email}', '${req.body.admin}')`;
     });
     //sql = `INSERT INTO ${req.params.name} (username, password, email, admin) VALUES ('${req.body.username}', '${req.body.password}', '${req.body.email}', '${req.body.admin}')`;
+  }
+  else {
+    sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
   }
   pool.query(sql, function (err, result) {
     if (err) throw err;
