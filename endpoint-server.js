@@ -22,6 +22,10 @@ var pool = mysql.createPool({
 
 app.use(express.json());
 app.use(queue({ activeLimit: 2, queuedLimit: -1 }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 app.get('/', function (req, res) {
     res.json(res);
