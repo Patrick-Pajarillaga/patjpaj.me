@@ -59,10 +59,8 @@ app.post("/:name", (req, res, next) => {
   }
   else if (req.params.name == "accounts") {
     let saltRounds = 10;
-    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-      sql = `INSERT INTO ${req.params.name} (username, password, email, admin) VALUES ('${req.body.username}', '${hash}', '${req.body.email}', '${req.body.admin}')`;
-    });
-    //sql = `INSERT INTO ${req.params.name} (username, password, email, admin) VALUES ('${req.body.username}', '${req.body.password}', '${req.body.email}', '${req.body.admin}')`;
+    let pass = bcrypt.hashSync(req.body.password, saltRounds);
+    sql = `INSERT INTO ${req.params.name} (username, password, email, admin) VALUES ('${req.body.username}', '${pass}', '${req.body.email}', '${req.body.admin}')`;
   }
   else {
     sql = `INSERT INTO ${req.params.name} (data, vitalScore) VALUES ('${JSON.stringify(req.body.data)}', '${req.body.vitalsScore}')`;
