@@ -82,7 +82,9 @@ app.delete("/:name/:id", (req, res, next) => {
 app.put("/:name/:id", (req, res, next) => {
   var sql_string = `UPDATE ${req.params.name} SET data='${JSON.stringify(req.body.data)}' WHERE id=${req.params.id}`;
   if(req.params.name == "accounts") {
-    sql_string = `UPDATE ${req.params.name} SET username='${req.body.username}', password='${req.body.password}', email='${req.body.email}', admin='${req.body.admin}' WHERE id=${req.params.id}`;
+    let saltRounds = 10;
+    let pass = bcrypt.hashSync(req.body.password, saltRounds);
+    sql_string = `UPDATE ${req.params.name} SET username='${req.body.username}', password='${pass}', email='${req.body.email}', admin='${req.body.admin}' WHERE id=${req.params.id}`;
   }
   pool.query(sql_string, function (err, result, fields) {
     if (err) throw err;
