@@ -56,7 +56,7 @@ app.post("/:name", (req, res, next) => {
     sql = `INSERT INTO ${req.params.name} (vitalsScore, language, userAgent, innerWidth, outerWidth, innerHeight, outerHeight, cookieEnabled) VALUES ('${req.body.vitalsScore}', '${req.body.data.language}', '${req.body.data.userAgent}', '${req.body.data.innerWidth}', '${req.body.data.outerWidth}', '${req.body.data.innerHeight}', '${req.body.data.outerHeight}', '${req.body.data.cookieEnabled}')`;
   }
   else if (req.params.name == "accounts") {
-    sql = `INSERT INTO ${req.params.name} (username, password, email, admin) VALUES ('${req.body.username}', '${req.body.data.password}', '${req.body.data.email}', '${req.body.data.admin}')`;
+    sql = `INSERT INTO ${req.params.name} (username, password, email, admin) VALUES ('${req.body.username}', '${req.body.password}', '${req.body.email}', '${req.body.admin}')`;
   }
   pool.query(sql, function (err, result) {
     if (err) throw err;
